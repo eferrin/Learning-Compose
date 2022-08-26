@@ -38,7 +38,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun MyApp() {
-    Greetings()
+    var shouldShowOnboarding by remember { mutableStateOf(true) }
+
+    if (shouldShowOnboarding) {
+        OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+    } else {
+        Greetings()
+    }
 }
 
 @Composable
@@ -79,19 +85,17 @@ private fun Greeting(name: String) {
 }
 
 @Composable
-fun OnboardingScreen() {
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
-
+fun OnboardingScreen(onContinueClicked: () -> Unit) {
     Surface {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Welcome to the Basics Codelab!")
+            Text("Welcome to the Jetpack Compose Learning!")
             Button(
                 modifier = Modifier.padding(vertical = 24.dp),
-                onClick = { shouldShowOnboarding = false }
+                onClick = onContinueClicked
             ) {
                 Text("Continue")
             }
@@ -99,7 +103,7 @@ fun OnboardingScreen() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 320)
+@Preview(showBackground = true, widthDp = 320, heightDp = 480)
 @Composable
 fun DefaultPreview() {
     ComposeApplicationTheme {
@@ -107,10 +111,10 @@ fun DefaultPreview() {
     }
 }
 
-@Preview(showBackground = true, widthDp = 320, heightDp = 320)
+@Preview(showBackground = true, widthDp = 320, heightDp = 480)
 @Composable
 fun OnboardingPreview() {
     ComposeApplicationTheme {
-        OnboardingScreen()
+        OnboardingScreen {}
     }
 }
