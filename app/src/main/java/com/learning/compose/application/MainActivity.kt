@@ -8,14 +8,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,7 +51,10 @@ private fun MyApp() {
     if (shouldShowOnboarding) {
         OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
     } else {
-        Greetings()
+        Column(Modifier.padding(vertical = 16.dp)) {
+            SearchBar(Modifier.padding(horizontal = 16.dp))
+            Greetings()
+        }
     }
 }
 
@@ -103,6 +112,28 @@ fun OnboardingScreen(onContinueClicked: () -> Unit) {
     }
 }
 
+@Composable
+fun SearchBar(
+    modifier: Modifier = Modifier
+) {
+    TextField(
+        value = "",
+        onValueChange = {},
+        leadingIcon = {
+            Icon(imageVector = Icons.Default.Search, contentDescription = null)
+        },
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface
+        ),
+        placeholder = {
+            Text(text = "Search")
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp)
+    )
+}
+
 @Preview(showBackground = true, widthDp = 320, heightDp = 480)
 @Composable
 fun DefaultPreview() {
@@ -118,3 +149,12 @@ fun OnboardingPreview() {
         OnboardingScreen {}
     }
 }
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+fun SearchBarPreview() {
+    ComposeApplicationTheme {
+        SearchBar()
+    }
+}
+
