@@ -41,6 +41,8 @@ private fun MyApp(names: List<String> = listOf("Android", "iOS")) {
 
 @Composable
 private fun Greeting(name: String) {
+    var expanded = false
+    val extraPadding = if (expanded) 48.dp else 0.dp
     Surface(
         color = MaterialTheme.colors.primary,
         modifier = Modifier
@@ -48,12 +50,15 @@ private fun Greeting(name: String) {
             .padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
         Row(Modifier.padding(24.dp)) {
-            Column(Modifier.weight(1f)) {
+            Column(
+                Modifier
+                    .weight(1f)
+                    .padding(bottom = extraPadding)) {
                 Text(text = "Hello,")
                 Text(text = "$name!")
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
-                Text(text = "Show More")
+            OutlinedButton(onClick = { expanded = !expanded }) {
+                Text(text = if (expanded) "Show More" else "Show Less")
             }
         }
     }
