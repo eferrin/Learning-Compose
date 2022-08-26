@@ -26,9 +26,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun MyApp() {
+private fun MyApp(names: List<String> = listOf("Android", "iOS")) {
     Surface(color = MaterialTheme.colors.background) {
-        Greeting("Meli Components")
+        Column {
+            for (name in names) {
+                Greeting(name)
+            }
     }
 }
 
