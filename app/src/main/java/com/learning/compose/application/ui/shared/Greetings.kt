@@ -1,4 +1,4 @@
-package com.learning.compose.application.view.composable.component
+package com.learning.compose.application.ui.shared
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,7 +16,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.learning.compose.application.ui.theme.ComposeApplicationTheme
 
 @Composable
 fun Greetings(names: List<String> = List(100) { "$it" }) {
@@ -50,5 +52,13 @@ fun Greeting(name: String) {
                 Text(text = if (expanded) "Show Less" else "Show More")
             }
         }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320, heightDp = 480)
+@Composable
+fun GreetingsPreview() {
+    ComposeApplicationTheme {
+        Greetings()
     }
 }

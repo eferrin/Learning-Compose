@@ -1,4 +1,4 @@
-package com.learning.compose.application.view.composable
+package com.learning.compose.application.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

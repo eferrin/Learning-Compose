@@ -1,4 +1,4 @@
-package com.learning.compose.application.view.composable.component
+package com.learning.compose.application.ui.shared
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
